@@ -47,17 +47,17 @@ $(document).ready(function(){
 <script>
   function validatelogin(){
     if( document.loginform.email.value == "" ) {
-      document.getElementById('loginwarning').innerHTML = "***Email ID cannot be Blank***";
+      document.getElementById('loginwarning').innerHTML = "***Email ID Cannot be Blank***";
       document.loginform.email.focus() ;
       return false;
     }
-    if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+.(?:\.[a-zA-Z0-9-]+)*$/.test(document.loginform.email.value)){
+    if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(document.loginform.email.value)){
       document.getElementById('loginwarning').innerHTML = "***Invalid Email Address***";
       document.loginform.email.focus() ;
       return false;
     }
     if( document.loginform.password.value == "" ) {
-      document.getElementById('loginwarning').innerHTML = "***Password cannot be Blank***";
+      document.getElementById('loginwarning').innerHTML = "***Password Cannot be Blank***";
       document.loginform.password.focus() ;
       return false;
     }
@@ -78,13 +78,23 @@ $(document).ready(function(){
       return false;
     }
     if( document.signupform.email.value == "" ) {
-      document.getElementById('signupwarning').innerHTML = "***Email ID cannot be Blank***";
+      document.getElementById('signupwarning').innerHTML = "***Email ID Cannot be Blank***";
       document.signupform.email.focus() ;
       return false;
     }
-    if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+.(?:\.[a-zA-Z0-9-]+)*$/.test(document.signupform.email.value)){
+    if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(document.signupform.email.value)){
       document.getElementById('signupwarning').innerHTML = "***Invalid Email Address***";
       document.signupform.email.focus() ;
+      return false;
+    }
+    if( document.signupform.contactNumber.value == "" ) {
+      document.getElementById('signupwarning').innerHTML = "***Mobile Number Cannot be Blank***";
+      document.signupform.contactNumber.focus() ;
+      return false;
+    }
+    if( document.signupform.contactNumber.value.length != 10 ){
+      document.getElementById('signupwarning').innerHTML = "***Mobile Number Must be 10 Digits***";
+      document.signupform.contactNumber.focus() ;
       return false;
     }
     if( document.signupform.year.value == "-1" ) {
@@ -98,7 +108,7 @@ $(document).ready(function(){
       return false;
     }
     if( document.signupform.password.value == "" ) {
-      document.getElementById('signupwarning').innerHTML = "***Password cannot be Blank***";
+      document.getElementById('signupwarning').innerHTML = "***Password Cannot be Blank***";
       document.signupform.password.focus() ;
       return false;
     }
@@ -133,7 +143,7 @@ return true;
     padding: 0;
     float: left;
     width: 35%;
-    min-height: 80vh;
+    min-height: 60vh;
     zoom: 0.9;
     border-radius: 10px;
   }
@@ -293,8 +303,8 @@ return true;
 {% endblock %}
 
 {% block body-content %}
-<!-- <div style="min-height: 95vh; background-image:url('../media/images/temp.jpg'); background-repeat:no-repeat; background-position: center; background-size: cover; display:flex; align-items: center;"> -->
-  <div style="min-height: 95vh; display:flex; align-items: center;">
+<div style="min-height: 95vh; background-image:url('../media/images/login-background.png'); background-repeat:no-repeat;  background-size: cover; display:flex; background-position: left top; background-attachment: fixed;">
+  
 <div class="forms">
 	<ul class="tab-group">
 		<li class="tab active" id="loginbutton"><a href="#login">Log In</a></li>
@@ -333,6 +343,8 @@ return true;
         <input type="text" name="fullName" placeholder="John Doe" />
         <label for="email">Email</label> 
         <input type="text" name="email" placeholder="john@example.com"/>
+        <label for="contactNumber">Mobile Number</label>
+        <input type="number" name="contactNumber" placeholder="9876543210"/>
         <div class="grid-container">
         <label for="year" class="grid-item">Year of Study</label>
         <label for="Branch" class="grid-item">Branch</label>
